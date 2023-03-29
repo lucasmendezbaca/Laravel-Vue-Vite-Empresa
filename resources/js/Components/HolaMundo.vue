@@ -1,14 +1,12 @@
 <script setup>
     import { ref, onMounted } from 'vue'
+    import getCategorias from '../Services/BackendService'
 
     const categorias = ref([])
 
-    const getCategorias = async () => {
-        const response = await axios.get('http://127.0.0.1:8000/api/categorias')
-        categorias.value = response.data.data
-    }
-
-    onMounted(getCategorias)
+    onMounted(async () => {
+        categorias.value = await getCategorias()
+    })
 </script>
 
 <template>
